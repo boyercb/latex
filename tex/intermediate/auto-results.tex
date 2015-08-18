@@ -1,0 +1,41 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{S[table-format
+=
+5.3]}}
+\toprule
+                    &\multicolumn{2}{c}{\specialcell{Foreign \\ (Eg: Audi 5000)}}&\multicolumn{2}{c}{\specialcell{Local \\ (Eg: AMC Concord)}}\\
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         \\
+\midrule
+\addlinespace[1mm] \multicolumn{5}{p{\linewidth}}{\emph{Panel A: OLS Regressions}}                                      \\
+Headroom            &       700.0         &       -66.9         &      -472.0         &      -535.4         \\
+                    &     (946.5)         &     (974.0)         &     (474.6)         &     (536.8)         \\
+\addlinespace
+Miles Per Gallon    &      -252.3\sym{***}&      -210.9\sym{***}&      -374.1\sym{***}&      -473.0\sym{***}\\
+                    &      (69.6)         &      (70.5)         &      (91.6)         &     (114.4)         \\
+\addlinespace
+Constant            &     10805.8\sym{***}&     12019.8\sym{***}&     14979.1\sym{***}&     20546.4\sym{***}\\
+                    &    (2995.1)         &    (2866.2)         &    (2891.6)         &    (4743.6)         \\
+\midrule
+\addlinespace[1mm] \multicolumn{5}{p{\linewidth}}{\emph{Panel B: Fixed Effects Regressions, Controlling for Headroom}}  \\
+Headroom            &      -139.7         &      -628.0         &      -136.2         &       273.7         \\
+                    &    (1061.1)         &    (1199.1)         &     (647.5)         &     (802.0)         \\
+\addlinespace
+Miles Per Gallon    &      -100.2         &       -21.1         &      -461.5\sym{**} &      -643.8\sym{***}\\
+                    &      (91.5)         &      (92.3)         &     (191.2)         &     (237.0)         \\
+\addlinespace
+Constant            &      9231.6\sym{***}&      7827.3\sym{**} &     15651.7\sym{***}&     21346.3\sym{***}\\
+                    &    (3107.2)         &    (3614.2)         &    (4876.5)         &    (8267.5)         \\
+\addlinespace
+Repair Dummies      &          {No}         &         {Yes}         &          {No}         &         {Yes}         \\
+\midrule
+Model 1 Observations&\multicolumn{1}{c}{22}         &\multicolumn{1}{c}{21}         &\multicolumn{1}{c}{52}         &\multicolumn{1}{c}{48}         \\
+Model 2 Observations&\multicolumn{1}{c}{22}         &\multicolumn{1}{c}{21}         &\multicolumn{1}{c}{52}         &\multicolumn{1}{c}{48}         \\
+Model 1 R2          &        0.42         &        0.41         &        0.27         &        0.33         \\
+Model 2 R2          &        0.70         &        0.73         &        0.43         &        0.50         \\
+\bottomrule
+\multicolumn{5}{p{\linewidth}}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{5}{p{\linewidth}}{\footnotesize This is a very long note which will force the table to have a huge width if it weren't for the substitute command which follows.}\\
+\multicolumn{5}{p{\linewidth}}{\footnotesize \sym{*} \(p<.10\), \sym{**} \(p<.05\), \sym{***} \(p<.01\)}\\
+\end{tabular}
+}

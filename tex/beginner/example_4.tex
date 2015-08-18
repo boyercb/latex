@@ -1,0 +1,61 @@
+% The preamble
+\documentclass{article}
+\pagestyle{plain} %includes page numbers
+
+\usepackage[margin=1in]{geometry} %included to change page margins
+\usepackage{graphicx} %included to insert a graph
+\usepackage{caption} %included to include a caption over the graph
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm}
+
+\usepackage[round]{natbib}	
+\bibliographystyle{plainnat}
+
+\title{My fourth document}
+\author{Jane Doe}
+\date{31 September 2016}
+
+% The body
+\begin{document}
+\maketitle
+\tableofcontents{}
+
+\section{Equations}
+\subsection{In-text Equations}
+This \begin{math}
+	k_{n+1} = n^2 + k_n^2 - k_{n-1}
+\end{math} is some text, which could also be written like $k_{n+1} = n^2 + k_n^2 - k_{n-1}$ this
+
+\subsection{Centered Equations}
+Some more
+\begin{displaymath}
+	k_{n+1} = n^2 + k_n^2 - k_{n-1}
+\end{displaymath}
+text, which could also be written like 
+$$ k_{n+1} = n^2 + k_n^2 - k_{n-1} $$
+this. 
+
+\subsection{Very Long Equations}
+\begin{eqnarray}
+	k_{n+1} = n^2 + k_n^2 - k_{n-1}
+\end{eqnarray}
+
+\subsection{Numbered Equations}
+\begin{equation}
+	k_{n+1} = n^2 + k_n^2 - k_{n-1}
+\end{equation}
+
+\section{Reference Management}
+
+Lorem ipsum dolor sit amet Campbell et al., consectetur adipisicing elit \citeyearpar{Campbell.1960}, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in ``reprehenderit in voluptate" \citeyearpar[151]{Achen.2002} velit esse cillum dolore eu fugiat nulla pariatur \citep{Achen.1992}. Excepteur sint occaecat cupidatat non proident, sunt in culpa \citet{Jackson.1975} qui officia deserunt mollit anim id est laborum. \citep[see][]{Lazarsfeld.1948,Campbell.1953,Daudt.1961,Key.1966}
+
+
+\section{Bibliography}
+
+%\addcontentsline{toc}{Section}{Bibliography}
+
+\renewcommand{\section}[2]{} % Removing the automated "Title"
+\bibliography{mabibs} 
+
+\end{document}

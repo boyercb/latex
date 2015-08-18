@@ -1,0 +1,137 @@
+\documentclass{article}
+
+%%%%%%%%%%%%%%%%%
+%CONSTANTS
+%%%%%%%%%%%%%%%%%
+\newcommand{\scaling}{.2}
+\newcommand{\scalingmid}{.5}
+
+%Directory Variables
+\newcommand{\rootdir}{C:/Users/jholmes/Dropbox/}
+\newcommand{\graphdir}{\rootdir/graphs/png}
+\newcommand{\tabledir}{\rootdir/tables/latex}
+
+\title{Example Custom Latex Table}
+\author{Jonathan Holmes}
+\date{\today} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%             PACKAGES              %%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%For better code
+\usepackage{verbatim} 			%Allows begin{comment} and end{comment}
+								%Also allows for the "verbatim" package
+
+%For the tables and graphs
+\usepackage{booktabs}
+\usepackage{calc}			%Necessary for the text wrapping command on tables. 
+\usepackage{array}			%For better tables (wrapping text in cells)
+\usepackage{rotating}		%For rotated tables
+\usepackage{longtable}		%Allows tables to extend past one page
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%                NEW COMMANDS             %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Not sure why this was in here! 
+%\setlength{\unitlength}{0.20cm}
+
+%In order to create 
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+
+%						TABLE COMMANDS						%
+
+%CREATE TABLE (That allows for text wrapping)
+\newcommand{\inputtable}[3]{%
+\begin{table}[htp]%
+\centering%
+\caption{#3}%
+\label{#2}%
+\setlength{\linewidth}{.1cm}
+\newcommand{\contents}{\input{"#1"} }
+\setbox0=\hbox{\contents}
+%Set linewidth to the width of box wd0 (minus column spacing and character spacing required by booktabs)
+%Note: 2em is equal to 2*size of a character in the current font. I'm not sure why this works yet - I only achieved
+%the desired table width using trial and error. 
+\setlength{\linewidth}{\wd0-2\tabcolsep-2em}%
+\contents
+\end{table}%
+}%
+
+\newcommand{\inputsidewaystable}[3]{%
+\begin{sidewaystable}[htp]%
+\centering%
+\caption{#3}%
+\label{#2}%
+\input{"#1"} %
+\end{sidewaystable}%
+}
+
+\newcounter{currenttab}
+\newcommand{\startsubtable}{
+	\setcounter{currenttab}{\value{table}}
+	\addtocounter{currenttab}{1}
+	\setcounter{table}{0}
+	\renewcommand\thetable{\arabic{currenttab}\Alph{table}} 
+}
+\newcommand{\finishsubtable}{
+	\setcounter{table}{\value{currenttab}}
+	\renewcommand\thetable{\arabic{table}} 
+}
+
+
+
+
+% Allow line breaks with \\ in specialcells
+%Source: http://www.jwe.cc/2012/03/stata-latex-tables-estout/
+%NOTE: @{} omits the space at the beginning and end of the cell. 
+%NOTE2: [c] is the default for #1. 
+	\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+%\shortstack[#1]{#2}}
+
+
+%						FIGURE COMMANDS						%
+\newcommand{\inputfigure}[4]{%
+\begin{figure}[htp]%
+%\begin{figure}[b]%
+\centering%
+\caption{#4}%
+\includegraphics[scale=#2]{#1}%
+\label{#3}%
+\end{figure}%
+}%
+
+
+
+\usepackage{siunitx} % centering in tables
+	\sisetup{
+		detect-mode,
+		tight-spacing		= true,
+		group-digits		= false ,
+		input-signs		= ,
+		input-symbols		= ( ) [ ] - + *,
+		input-open-uncertainty	= ,
+		input-close-uncertainty	= ,
+		table-align-text-post	= false
+        }
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\inputtable{auto-results.tex}{tab:exampletab}{Example Table}
+
+\end{document}
